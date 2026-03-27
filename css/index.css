@@ -1,0 +1,178 @@
+.accueil-photos {
+  background-color: white;
+  padding: 80px;
+}
+
+.accueil-photos h2 {
+  color: #242424;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.projets-conteneur {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.carte-projet {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carte-projet:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.carte-projet img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.carte-projet h3 {
+  color: #242424;
+  font-size: 1.3em;
+  padding: 20px 20px 10px 20px;
+  margin: 0;
+}
+
+.carte-projet p {
+  color: #666;
+  font-size: 0.95em;
+  padding: 0 20px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.projet-lien {
+  display: inline-block;
+  color: #a5b4fc;
+  text-decoration: none;
+  padding: 15px 20px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.projet-lien:hover {
+  color: #8e86b5;
+  text-decoration: underline;
+}
+
+.accueil-introduction {
+  display: flex;
+  flex-direction: row;
+  max-width: 1000px;
+  align-items: flex-start;
+  margin: auto;
+}
+
+.accueil-introduction h1 {
+  margin-bottom: 15px;
+}
+
+.accueil-introduction p {
+  margin-bottom: 30px;
+}
+
+.accueil-introduction div {
+  padding-right: 80px;
+}
+
+.section-contact h2 {
+  color: #a5b4fc;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: auto;
+  color: white;
+}
+
+.form-nom-email {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.form-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+input,
+textarea {
+  padding: 15px;
+  border-radius: 3px;
+  border: none;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input[type='submit'] {
+  width: 200px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 996px) {
+  .accueil-introduction {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .accueil-introduction div {
+    padding-right: 0;
+    text-align: center;
+    order: 2;
+  }
+
+  .accueil-introduction img {
+    order: 1;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .accueil-photos {
+    padding: 20px;
+  }
+
+    .projets-conteneur{
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+    .carte-projet {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  
+
+  .section-contact {
+    padding: 50px 20px;
+  }
+
+  .form-nom-email {
+    flex-direction: column;
+    gap: 0;
+  }
+}

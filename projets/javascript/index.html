@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deviner le Nombre – Mini-Jeu</title>
+
+  <!-- CSS global du portfolio -->
+  <link href="../../css/style.css" rel="stylesheet" />
+  <link href="../../css/portfolio.css" rel="stylesheet" />
+
+  <!-- Styles spécifiques au jeu -->
+  <link href="css/game.css" rel="stylesheet" />
+
+  <!-- Polices Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Scripts du jeu — chargés dans l'ordre de dépendance :
+       config  → etat  → ui  → game  → main
+       defer : téléchargement en parallèle, exécution après le DOM -->
+  <script src="scripts/config.js" defer></script>
+  <script src="scripts/etat.js"   defer></script>
+  <script src="scripts/ui.js"     defer></script>
+  <script src="scripts/game.js"   defer></script>
+  <script src="scripts/main.js"   defer></script>
+</head>
+<body>
+
+  <!-- =============================================
+       SECTION PRINCIPALE DU JEU
+  ============================================= -->
+  <main class="jeu-conteneur" id="jeu-conteneur">
+
+    <!-- En-tête du jeu -->
+    <header class="jeu-entete">
+      <h1 class="jeu-titre">🎯 Devine le Nombre</h1>
+      <p class="jeu-sous-titre">Un nombre a été choisi au hasard. Sauras-tu le trouver ?</p>
+    </header>
+
+    <!-- Sélecteur de difficulté -->
+    <section class="jeu-difficulte" aria-label="Niveau de difficulté">
+      <p class="jeu-difficulte-label">Choisir la difficulté :</p>
+      <div class="jeu-difficulte-boutons" role="group" aria-label="Niveaux">
+        <button class="btn-difficulte actif" data-niveau="facile"    aria-pressed="true">Facile</button>
+        <button class="btn-difficulte"       data-niveau="moyen"     aria-pressed="false">Moyen</button>
+        <button class="btn-difficulte"       data-niveau="difficile" aria-pressed="false">Difficile</button>
+      </div>
+      <p class="jeu-difficulte-info" id="info-difficulte">1 à 50 · 15 essais max</p>
+    </section>
+
+    <!-- Zone de jeu principale -->
+    <section class="jeu-zone" aria-live="polite">
+
+      <!-- Statistiques (essais, score, restants) -->
+      <div class="jeu-stats">
+        <div class="jeu-stat">
+          <span class="jeu-stat-valeur" id="compteur-tentatives">0</span>
+          <span class="jeu-stat-etiquette">Tentatives</span>
+        </div>
+        <div class="jeu-stat jeu-stat--score">
+          <span class="jeu-stat-valeur" id="score-actuel">–</span>
+          <span class="jeu-stat-etiquette">Score</span>
+        </div>
+        <div class="jeu-stat">
+          <span class="jeu-stat-valeur" id="essais-restants">15</span>
+          <span class="jeu-stat-etiquette">Essais restants</span>
+        </div>
+      </div>
+
+      <!-- Barre de progression des essais -->
+      <div class="jeu-barre-conteneur" aria-label="Progression des essais" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="jeu-barre-fond">
+          <div class="jeu-barre-remplissage" id="barre-progression"></div>
+        </div>
+      </div>
+
+      <!-- Champ de saisie et bouton -->
+      <div class="jeu-saisie">
+        <input
+          type="number"
+          id="champ-proposition"
+          class="jeu-input"
+          placeholder="Entrez un nombre…"
+          min="1"
+          max="100"
+          aria-label="Votre proposition"
+          autocomplete="off"
+        />
+        <!-- Plus de onclick="..." : les événements sont gérés dans main.js -->
+        <button class="btn-deviner" id="btn-deviner">
+          Deviner
+        </button>
+      </div>
+
+      <!-- Message de retour (trop petit / trop grand / bravo) -->
+      <div class="jeu-message" id="message-retour" role="status" aria-live="assertive"></div>
+
+    </section>
+
+    <!-- Historique des propositions -->
+    <section class="jeu-historique" aria-label="Historique des propositions">
+      <h2 class="jeu-historique-titre">Historique</h2>
+      <ul class="jeu-historique-liste" id="historique-liste">
+        <li class="jeu-historique-vide">Aucune proposition pour l'instant.</li>
+      </ul>
+    </section>
+
+    <!-- Bouton Rejouer (masqué par défaut) -->
+    <div class="jeu-rejouer" id="zone-rejouer" hidden>
+      <!-- Plus de onclick="..." : l'événement est géré dans main.js -->
+      <button class="btn-rejouer" id="btn-rejouer">
+        🔄 Rejouer
+      </button>
+    </div>
+
+  </main>
+
+</body>
+</html>

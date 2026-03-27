@@ -1,0 +1,470 @@
+/* ==============================================
+   game.css – Styles spécifiques au mini-jeu
+   "Deviner le Nombre"
+   Auteur : [Ton Nom] – Portfolio MMI / BTS SIO
+
+   ⚠️  Ce fichier reprend exactement la charte de
+       style.css + portfolio.css :
+       - Fond      : #1f2039
+       - Accent    : #a5b4fc  (em, h1, liens)
+       - CTA       : dégradé #8e86b5 → #acaeed, radius 50px
+       - Texte     : #f9f8ff
+       - Polices   : Manrope (corps) / Montserrat (titres)
+   ============================================== */
+
+/* ── Variables CSS du jeu ──────────────────────
+   Synchronisées avec style.css et portfolio.css.
+   Modifier ici si la charte évolue.
+   ────────────────────────────────────────────── */
+:root {
+  --jeu-accent:          #a5b4fc;
+  --jeu-accent-clair:    #acaeed;
+  --jeu-gradient-debut:  #8e86b5;
+  --jeu-gradient-fin:    #acaeed;
+  --jeu-succes:          #22c55e;
+  --jeu-erreur:          #ef4444;
+  --jeu-attention:       #f59e0b;
+  --jeu-fond:            #1f2039;
+  --jeu-surface:         #272847;
+  --jeu-surface-2:       #2e2f52;
+  --jeu-texte:           #f9f8ff;
+  --jeu-texte-doux:      #9494b8;
+  --jeu-bordure:         rgba(165, 180, 252, 0.2);
+  --jeu-police-titre:    'Montserrat', sans-serif;
+  --jeu-police-texte:    'Manrope', sans-serif;
+  --jeu-radius:          16px;
+  --jeu-radius-sm:       10px;
+  --jeu-radius-btn:      50px;
+  --jeu-ombre:           0 8px 32px rgba(0, 0, 0, 0.5);
+  --jeu-ombre-accent:    0 4px 20px rgba(165, 180, 252, 0.3);
+  --jeu-transition:      0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset minimal ──────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Fond de page ─────────────────────────────── */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background-image:
+    radial-gradient(ellipse 80% 45% at 50% -5%, rgba(165,180,252,0.12) 0%, transparent 70%);
+}
+
+/* ── Conteneur principal du jeu ─────────────── */
+.jeu-conteneur {
+  width: 100%;
+  max-width: 560px;
+  background: var(--jeu-surface);
+  border: 1px solid var(--jeu-bordure);
+  border-radius: var(--jeu-radius);
+  padding: 1.8rem 1.6rem;
+  box-shadow: var(--jeu-ombre);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  animation: apparition 0.5s var(--jeu-transition) both;
+}
+
+@keyframes apparition {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── En-tête ────────────────────────────────── */
+.jeu-entete {
+  text-align: center;
+}
+
+.jeu-titre {
+  font-family: var(--jeu-police-titre);
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--jeu-accent);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.jeu-sous-titre {
+  color: var(--jeu-texte-doux);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ── Sélecteur de difficulté ────────────────── */
+.jeu-difficulte {
+  background: var(--jeu-surface-2);
+  border-radius: var(--jeu-radius-sm);
+  padding: 0.9rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: 1px solid var(--jeu-bordure);
+}
+
+.jeu-difficulte-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--jeu-texte-doux);
+  font-weight: 600;
+}
+
+.jeu-difficulte-boutons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-difficulte {
+  flex: 1;
+  min-width: 80px;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--jeu-bordure);
+  background: transparent;
+  color: var(--jeu-texte-doux);
+  border-radius: var(--jeu-radius-btn);
+  font-family: var(--jeu-police-texte);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--jeu-transition);
+}
+
+.btn-difficulte:hover {
+  border-color: var(--jeu-accent);
+  color: var(--jeu-texte);
+  background: rgba(165, 180, 252, 0.1);
+}
+
+.btn-difficulte.actif {
+  background: linear-gradient(var(--jeu-gradient-debut), var(--jeu-gradient-fin));
+  border-color: transparent;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: var(--jeu-ombre-accent);
+}
+
+.jeu-difficulte-info {
+  font-size: 0.82rem;
+  color: var(--jeu-accent-clair);
+  font-style: italic;
+}
+
+/* ── Zone principale de jeu ─────────────────── */
+.jeu-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* ── Statistiques ──────────────────────────── */
+.jeu-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.jeu-stat {
+  background: var(--jeu-surface-2);
+  border: 1px solid var(--jeu-bordure);
+  border-radius: var(--jeu-radius-sm);
+  padding: 0.6rem 0.6rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: border-color var(--jeu-transition);
+}
+
+.jeu-stat--score {
+  border-color: rgba(108, 99, 255, 0.5);
+}
+
+.jeu-stat-valeur {
+  font-family: var(--jeu-police-titre);
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--jeu-accent-clair);
+  line-height: 1;
+  transition: color var(--jeu-transition), transform 0.15s;
+}
+
+.jeu-stat-valeur.animer {
+  animation: popValeur 0.3s ease both;
+}
+
+@keyframes popValeur {
+  0%   { transform: scale(1);    }
+  50%  { transform: scale(1.25); }
+  100% { transform: scale(1);    }
+}
+
+.jeu-stat-etiquette {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--jeu-texte-doux);
+  font-weight: 600;
+}
+
+/* ── Barre de progression ───────────────────── */
+.jeu-barre-conteneur {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.jeu-barre-fond {
+  height: 6px;
+  background: var(--jeu-surface-2);
+  border-radius: 99px;
+  overflow: hidden;
+  border: 1px solid var(--jeu-bordure);
+}
+
+.jeu-barre-remplissage {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--jeu-accent), var(--jeu-accent-clair));
+  border-radius: 99px;
+  transition: width 0.4s var(--jeu-transition), background 0.4s;
+}
+
+.jeu-barre-remplissage.danger {
+  background: linear-gradient(90deg, var(--jeu-attention), var(--jeu-erreur));
+}
+
+/* ── Zone de saisie ─────────────────────────── */
+.jeu-saisie {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.jeu-input {
+  flex: 1;
+  padding: 0.85rem 1.1rem;
+  background: var(--jeu-surface-2);
+  border: 1.5px solid var(--jeu-bordure);
+  border-radius: var(--jeu-radius-sm);
+  color: var(--jeu-texte);
+  font-family: var(--jeu-police-texte);
+  font-size: 1.05rem;
+  font-weight: 500;
+  outline: none;
+  transition: border-color var(--jeu-transition), box-shadow var(--jeu-transition);
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.jeu-input::-webkit-outer-spin-button,
+.jeu-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.jeu-input::placeholder {
+  color: var(--jeu-texte-doux);
+  opacity: 0.6;
+}
+
+.jeu-input:focus {
+  border-color: var(--jeu-accent);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+}
+
+.jeu-input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Bouton "Deviner" ───────────────────────── */
+.btn-deviner {
+  padding: 0.85rem 1.6rem;
+  background: linear-gradient(var(--jeu-gradient-debut), var(--jeu-gradient-fin));
+  color: #fff;
+  border: none;
+  border-radius: var(--jeu-radius-btn);
+  font-family: var(--jeu-police-texte);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--jeu-transition), transform 0.15s, box-shadow var(--jeu-transition);
+  white-space: nowrap;
+  box-shadow: var(--jeu-ombre-accent);
+}
+
+.btn-deviner:hover:not(:disabled) {
+  background: linear-gradient(#696484, #8788ba);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(165, 180, 252, 0.4);
+}
+
+.btn-deviner:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-deviner:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ── Message de retour ──────────────────────── */
+.jeu-message {
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--jeu-radius-sm);
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all var(--jeu-transition);
+  opacity: 0;
+}
+
+.jeu-message.visible      { opacity: 1; }
+.jeu-message.trop-petit   { background: rgba(165,180,252,0.12); color: var(--jeu-accent);    border: 1px solid rgba(165,180,252,0.3); }
+.jeu-message.trop-grand   { background: rgba(245,158,11,0.12);  color: var(--jeu-attention); border: 1px solid rgba(245,158,11,0.3);  }
+.jeu-message.gagne        { background: rgba(34,197,94,0.12);   color: var(--jeu-succes);    border: 1px solid rgba(34,197,94,0.3);   }
+.jeu-message.perdu        { background: rgba(239,68,68,0.12);   color: var(--jeu-erreur);    border: 1px solid rgba(239,68,68,0.3);   }
+
+.jeu-message.animer {
+  animation: rebond 0.35s ease both;
+}
+
+@keyframes rebond {
+  0%   { transform: scale(0.92); opacity: 0; }
+  60%  { transform: scale(1.03); opacity: 1; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+/* ── Animation de secousse du champ invalide ──
+   Déclenchée par agiterInput() dans ui.js      */
+@keyframes agiter {
+  0%, 100% { transform: translateX(0);   }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px);  }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px);  }
+}
+
+/* ── Historique des propositions ─────────────── */
+.jeu-historique {
+  background: var(--jeu-surface-2);
+  border: 1px solid var(--jeu-bordure);
+  border-radius: var(--jeu-radius-sm);
+  padding: 0.9rem;
+}
+
+.jeu-historique-titre {
+  font-family: var(--jeu-police-titre);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--jeu-texte-doux);
+  margin-bottom: 0.8rem;
+}
+
+.jeu-historique-liste {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-height: 120px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--jeu-bordure) transparent;
+}
+
+.jeu-historique-vide {
+  color: var(--jeu-texte-doux);
+  font-size: 0.85rem;
+  font-style: italic;
+  width: 100%;
+}
+
+.jeu-historique-item {
+  padding: 0.35rem 0.7rem;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  animation: entreeItem 0.25s ease both;
+  border: 1px solid;
+}
+
+@keyframes entreeItem {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1);   }
+}
+
+.jeu-historique-item.bas   { background: rgba(165,180,252,0.15); border-color: rgba(165,180,252,0.4); color: var(--jeu-accent); }
+.jeu-historique-item.haut  { background: rgba(245,158,11,0.15);  border-color: rgba(245,158,11,0.4);  color: var(--jeu-attention); }
+.jeu-historique-item.exact { background: rgba(34,197,94,0.15);   border-color: rgba(34,197,94,0.4);   color: var(--jeu-succes); }
+
+/* ── Bouton Rejouer ───────────────────────────── */
+.jeu-rejouer {
+  text-align: center;
+}
+
+.btn-rejouer {
+  padding: 0.9rem 2.5rem;
+  background: transparent;
+  color: var(--jeu-accent);
+  border: 2px solid var(--jeu-accent);
+  border-radius: var(--jeu-radius-btn);
+  font-family: var(--jeu-police-texte);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--jeu-transition);
+  animation: entreeRejouer 0.4s 0.1s ease both;
+}
+
+@keyframes entreeRejouer {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.btn-rejouer:hover {
+  background: linear-gradient(var(--jeu-gradient-debut), var(--jeu-gradient-fin));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: var(--jeu-ombre-accent);
+  transform: translateY(-2px);
+}
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 480px) {
+  .jeu-conteneur {
+    padding: 1.8rem 1.2rem;
+    gap: 1.5rem;
+  }
+
+  .jeu-saisie {
+    flex-direction: column;
+  }
+
+  .btn-deviner {
+    width: 100%;
+  }
+
+  .jeu-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .jeu-stat-valeur {
+    font-size: 1.4rem;
+  }
+}

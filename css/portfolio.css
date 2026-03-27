@@ -1,0 +1,110 @@
+.portfolio-header {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.portfolio-header h1 {
+  margin-bottom: 15px;
+}
+
+.portfolio-header p {
+  font-size: 1.1em;
+  color: #f9f8ff;
+}
+
+/* Projet Sections */
+.portfolio-projet {
+  background-color: white;
+  padding: 80px;
+  margin-bottom: 0;
+}
+
+.portfolio-projet:nth-child(odd) {
+  background-color: white;
+}
+
+.portfolio-projet:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.projet-contenu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.projet-texte {
+  flex: 1;
+}
+
+.projet-image {
+  flex: 1;
+}
+
+.projet-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.portfolio-projet h2 {
+  color: #242424;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.projet-description {
+  color: #242424;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.projet-technologies {
+  color: #666;
+  font-size: 1em;
+  margin-bottom: 30px;
+}
+
+.portfolio-projet .cta {
+  background: linear-gradient(#8e86b5, #acaeed);
+  color: white;
+  text-decoration: none;
+}
+
+.portfolio-projet:nth-child(even) .project-contenu {
+  flex-direction: row-reverse;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 996px) {
+  .portfolio-projet {
+    padding: 50px 20px;
+  }
+
+  .project-contenu {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .portfolio-projet:nth-child(even) .project-contenu {
+    flex-direction: column;
+  }
+
+  .projet-texte,
+  .projet-image {
+    flex: 1 1 100%;
+  }
+
+  .portfolio-projet h2 {
+    font-size: 1.5em;
+  }
+
+  .projet-description {
+    font-size: 1em;
+  }
+}
