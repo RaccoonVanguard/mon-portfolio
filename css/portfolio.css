@@ -86,12 +86,12 @@
     padding: 50px 20px;
   }
 
-  .project-contenu {
+  .projet-contenu {
     flex-direction: column;
     gap: 30px;
   }
 
-  .portfolio-projet:nth-child(even) .project-contenu {
+  .portfolio-projet:nth-child(even) .projet-contenu {
     flex-direction: column;
   }
 
