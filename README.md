@@ -5,4 +5,4 @@ Ce portfolio rassemble mes projets personnels, parmis lesquels :
 - **Fiction interactive "Mené 2-0 à la mi-temps"** -réalisée avec Twine.
 
 ## Voir le portfolio
-Ouvre le fichier'index.html' dans ton navigateur pour consulter le portfolio.
+Ouvre le fichier "index.html" dans ton navigateur pour consulter le portfolio.
